@@ -1,0 +1,25 @@
+FileInfo v1.3  10/27/88
+
+FileInfo is an Intuitionalized combination of the CLI Rename, FileNote and
+Protect commands.  It allows you to display & modify all this information
+using string & boolean gadgets.  To run it, just type:
+         FileInfo filename
+
+New in this version:
+* You can now modify the new 1.3 flags; ie: pure, script & hidden.
+  The 'hidden' flag is undocumented and not supported by 1.3, but it does
+  exist, so I allow you to modify it for whatever evil purposes you desire.
+  Do so at your own risk.
+* Hitting <return> in the 'name' gadget will activate the 'note' gadget.
+* Hitting <return> in the 'note' gadget is equivalent to clicking on the
+  'save' gadget.
+* The de/selected status of the flag gadgets has been changed to
+  match the flags as displayed by the 'LIST' command.  For instance, if LIST
+  says a file's flags are ---aw--d, then the archive, write & delete gadgets
+  will be selected.  It makes more sense this way.
+
+All Benchmark Modula2 source & PowerWindows2.5 definition files included.
+(You will need the PowerWindows PW2.def & PW2.mod files or equivalent to 
+recompile the source.)
+Freely distributable for non-commercial use.
+Mike Weiblen  PLink: EKIM  CIS (rarely): 72506,2072

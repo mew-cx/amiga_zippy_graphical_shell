@@ -1,0 +1,210 @@
+               The Zippy Graphic Shell  (Version 2.5  11/05/88)
+
+                               Mike Weiblen
+                      4809 Calvert Road  POBox 1638
+                          College Park, MD 20740
+              PLink: EKIM   CIS: 72506,2082   GEnie: XTH36273
+
+Legal Stuff:
+  (c) Copyright 1988 by Michael Weiblen.  All Rights Reserved.
+  Freely distributable only with credits & copyright notice intact.
+
+Credits:
+  Inspired by and originally based (a looong time ago) on DuM2 
+  by Greg Browne, which is included as a demo program in the 
+  Benchmark Modula-2 package.  Thanks to Mic Kaczmarczik for ShowDevs,
+  another demo in the BM2 package.
+
+
+I'm going to assume you've used a directory utility before, so I'll just
+briefly describe the particular features of Zippy.  Experimenting is the
+best way to learn.
+
+To start it up, just type at any CLI prompt:
+          Zippy
+
+
+The Zippy Window:
+  Starting from the top, the window is composed of:
+    The Source Directory string gadget
+      This is the name of the 'current' directory.  Its contents are
+      displayed the the table below.
+    The Destination Directory string gadget
+      When you perform a move or copy operation, this is the directory
+      where things go.  Both the Source & Destination buffer has separate
+      undo buffers which are preserved for future access (see below).
+    A message/status line
+    A row of gadget buttons (more on this later)
+    A table listing the contents of the Source Directory
+    and along the right edge, a slider for scrolling the table.
+
+
+The Row of 10 Gadget Buttons (from left to right, they are:)
+  #1  The Refresh Button (looks like a starburst)
+      This rereads the Source directory & refreshs the file table.
+  #2  The Device Button (looks like a floppy disk)
+      Fills the table with the names of all devices & ASSIGNed directories.
+      The refresh button will bring back the current directory if you should
+      accidently hit the device button.
+
+  the next group of four buttons controls the string gadgets:
+  #3  The Root Button (the one with the colon)
+      Moves you the the root of the Source directory
+  #4  The Parent Button (the slash)
+      Moves you to the Source directory's parent
+  #5  The Swap Button (double-ended arrow)
+      Swaps the values of the Source & Destination string gadget.  Yes,
+      the undo buffers swap also.
+  #6  The Push Button (down arrow)
+      Copies the Source string gadget into the Destination
+
+  the last group of four buttons control file selections:
+  #7  The Clear Button (the empty box)
+      Clears all the selections
+  #8  The Select-All-Files Button (the filled box)
+      This selects all the files (NO directorys)
+  #9  The Reverse Button (the half-full/half-empty box)
+      Reverses the select status of all lines
+  #10 The Restore Button (looks a lot like a window-to-back gadget)
+      After a batch operation (like a copy), this will restore the your
+      previous selections.
+
+
+About the File Table:
+  Single-clicking:
+    Single-clicking on any entry will reverse its selection status.
+    Note that you can drag-select a range of files by moving the mouse with
+    the button held down.  If you drag off the end of the table, it will
+    scroll.
+  Double-clicking:
+    If you double-click on a directory name, that name will be added to the
+    end of the Source directory path.
+
+
+Special Feature: The Menu Button
+  The right mouse button can be used for more that just selecting menus.
+  It has a special meaning when clicked inside certain gadgets:
+    In the Source or Destination string gadgets, it will swap the current
+      buffer with the gadget's undo buffer.  This provides a handy place to
+      stash directory names you want to alternate between.  The undo buffers
+      are judiciously updated by certain gadget functions (like 'Root).
+    In the Root or Parent gadgets, it will give the the root or parent of
+      the Destination directory.
+
+
+About the Menus:
+  Zippy has 4 permanent standard menus. although you can add your own custom
+  menus (more on that later).  The first three (Zippy, Path & Select)
+  basically duplicate the gadget buttons.  Notice that the command key
+  shortcuts for the Path-Source and Path-Dest menus use the same keys, except
+  that the Dest functions are shifted.
+  The DOS menu contains the usual file management functions:
+    Move - Moves the selected lines to the destination.  Zippy will give you
+           an error if that name is already in the destination.
+    Copy - Copies files (only) to the destination.  It also copies the file's
+           protection flags & filenote.  It WILL replace a file that already
+           exists in the destination.
+    Delete - Deletes files and empty directories.  
+    Make New Dir D - Makes the directory whose name is in the destination
+           string gadget.  It will not, however, recursively create
+           directories; ie: RAM:AA/BB cant be created unless RAM:AA already
+           exists.  This function is automatically executed by Move & Copy
+           if the destination doesn't already exist.
+
+
+Programming the Menus:
+  OK, this is the best part.  Let's go over how Zippy uses the menu
+  definitions, then I'll go over how to set up your own.
+
+  The user menus are used to run any programs you desire with the selected
+  files as command line arguments.  The menu definition is in the form of
+  a script file that you set up using your favorite text editor.  A menu
+  definition script can define any number of menus and menu items.
+
+  There are 2 kinds of menu definitions: Global and Local.  The Global menu
+  definition (there is only one) is stored in the file "s:menus.zip".  In
+  this file you would put programs you ALWAYS would want access to.  For
+  instance, I put my text editor & a file reader in the global definition.
+
+  The Local definitions are stored in a file called "menus.zip" in any given
+  directory.  When that directory is the Source directory, the local script
+  is read in.  When you move from directory to directory, the local menus
+  are redefined by each local "menu.zip" file.  I have one in my modula-2
+  development directory that has compile & link functions defined.  In my
+  animations directory, I have a local menu script that allows me to use
+  Move & ShowAnim.
+
+  The Zippy Menu Script Language:
+  Its very simple: there are only two statements, but their format MUST be
+  followed exactly.  The script parser is not unbreakable!  I mean, why
+  bother writing an indestructable script interpreter when there are neat
+  products like ARexx on the market? (he hinted broadly).  If there are any
+  problems processing a script file, it simply SKIPS THE LINE and moves on.
+  A statement consists of terms seperated by spaces and terminated by a
+  linefeed.  If you want spaces included in a term, enclose it in quotes.
+
+  The first statement is MENU.  This defines the start of a new menu.
+  The format is:
+        MENU title
+  where 'title' is the string to be displayed in the menu bar.
+  You must have a MENU statement before you define any menuitems.
+  If you define more menus than will fit on the menu bar, you may be asking
+  for trouble.
+
+  The second statement is MENUITEM.  This defines you-know-what.
+  The format is:
+        MENUITEM title key program reward
+  where 'title' is the string displayed in the menu.
+        'key' is a single character specifying the menu shortcut.
+              If you don't want this item to have a shortcut, make this
+              term a null string, ie: ""
+              Beware you don't reuse a character that is already in use.
+        'program' is the string to be suffixed by a file name & executed.
+        'reward' is what should be done if the program is run without error.
+                 The choices are:
+                   R = reread (the default); rereads the Source directory
+                       ensuring an accurate table of filenames.
+                   U = unselect; simply unhighlight the selected file
+                   Z = zap; remove the file from the table, but dont
+                       reread the directory.
+
+  That's it!  See the file "Menus.doc" for information about the sample menu
+  scripts included in this archive.  Please look over the samples; use them
+  as models for setting up your own scripts.
+  
+
+Tips, Features & Other Stuff:
+
+* I didn't give Zippy the capability to rename files.  Instead, use my 
+  program FileInfo (included in this archive).  It allows you to rename
+  files & modify the comment and protection flags.
+
+* Zippy honors the undocumented AmigaDOS "hidden" flag.  So, if seeing that
+  'menus.zip' file in your directory bothers you, hide it!
+
+* I strongly suggest padding all menuitems in a given menu with spaces so
+  they are the same length.  It works so much better that way.  Also, if
+  you specify a menu shortcut, put about 5 spaces after the menuitem title
+  to leave space to display it.
+
+* Zippy is hardcoded to handle a maximum of 1000 files, but it only allocates
+    memory for the files actually in the current directory.
+
+* File names with spaces will automatically be surrounded by quotes when
+    used as command line arguments.
+
+* File names too long to be displayed?  Make the window wider.  Also, making
+    it taller allows more files to be displayed.
+
+* Batch operations are interrupted by clicking anywhere in the window.
+
+* Like those double-window directory utilities?  Just run two Zippys!
+
+* I use Bill Hawes' excellent WShell and have in my startup-sequence the
+    following line:   alias z="Run Zippy"
+    All I have to type is "z" at a CLI & I get Zippy running in background.
+
+
+This is the first public release of Zippy, so your feedback is essential.
+While I have been using it myself for quite some time, please be on the
+watch for weirdness.   Enjoy...       Mike Weiblen

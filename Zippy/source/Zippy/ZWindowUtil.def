@@ -1,0 +1,43 @@
+DEFINITION MODULE ZWindowUtil;  (* MEW 881029 *)
+
+FROM Intuition IMPORT
+    WindowPtr, GadgetPtr;
+FROM ZGlobal IMPORT
+    ZERR, Str255;
+
+TYPE
+  WBColors = (Grey,Black,Red,Orange);  (* My Workbench colors *)
+
+VAR
+  ZWindowPtr : WindowPtr;
+  fontHeight, fontWidth : INTEGER;
+
+
+PROCEDURE OpenZWindow() : BOOLEAN;
+  (* Open the Zippy window & define all its gadget and menus.  Returns
+     TRUE if successful. *)
+
+PROCEDURE CloseZWindow;
+  (* Close the Zippy window.  Can be called safely called even if
+     OpenZWindow failed. *)
+
+
+PROCEDURE DisplayMessage(str1,str2,str3,str4 : ARRAY OF CHAR);
+  (* Display the two strings in the message area of the window *)
+
+PROCEDURE DisplayZErr(zerr : ZERR);
+  (* Display a verbal explaination of the error code.  Flash the screen if
+     the code is anything other than ZOK. *)
+
+
+PROCEDURE InGadget(VAR g : GadgetPtr; x,y : INTEGER) : BOOLEAN;
+  (* Returns TRUE if the coordinate x,y is inside a gadget in the Zippy
+     window.  If so, gptr points to it. *)
+
+PROCEDURE RefreshStringGad(g : GadgetPtr);
+  (* Redisplays a string gadget so that as much text as possible is visible. *)
+
+PROCEDURE ModifySlider(pot,body : CARDINAL);
+  (* Simple way to modify the window's scroll bar. *)
+
+END ZWindowUtil.

@@ -1,0 +1,29 @@
+DEFINITION MODULE ZMenu;  (* MEW 881105 *)
+
+FROM Intuition IMPORT
+    MenuItem;
+
+FROM ZGlobal IMPORT
+    Str255;
+FROM ZTable IMPORT
+    SelectCode;
+
+
+TYPE
+  UserMenuItemPtr = POINTER TO UserMenuItem;
+  UserMenuItem = RECORD
+    MItem : MenuItem;
+    Command : POINTER TO Str255;
+    Reward : SelectCode
+  END;
+
+
+PROCEDURE SetupZippyMenus;
+
+PROCEDURE SetupGlobalMenus;
+
+PROCEDURE SetupLocalMenus;
+
+PROCEDURE FreeAllMenus;
+
+END ZMenu.

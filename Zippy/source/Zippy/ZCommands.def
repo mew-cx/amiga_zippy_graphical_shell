@@ -1,0 +1,76 @@
+DEFINITION MODULE ZCommands;  (* MEW 881103 *)
+
+FROM Intuition IMPORT
+    GadgetPtr;
+FROM ZTable IMPORT
+    SelectCode;
+
+
+(* Table *)
+
+PROCEDURE DisplayDeviceTable;
+
+PROCEDURE DisplayDirectoryTable;
+
+PROCEDURE SetCurrentDirectory;
+
+
+(* Path *)
+
+PROCEDURE SavePathToUndo(g : GadgetPtr);
+  (* Saves the current contents of a string gadget in its undo buffer.
+     While Intuition does this automatically when a string gadget is selected,
+     there are other situations when this is useful. *)
+
+PROCEDURE SetPath(g : GadgetPtr; str : ARRAY OF CHAR);
+  (* Intuition-friendly way to set a string gadget *)
+
+PROCEDURE GetPath(g : GadgetPtr; VAR str : ARRAY OF CHAR);
+  (* Easy way to get the value of a string gadget. *)
+
+PROCEDURE SwapPaths;
+  (* Exchange the contents of the two string gadgets. *)
+
+PROCEDURE UndoPath(g : GadgetPtr);
+  (* Swaps the contents of a string gadgets current & undo buffers. *)
+
+PROCEDURE CopyPath(from,to : GadgetPtr);
+
+PROCEDURE ParentPath(g : GadgetPtr);
+
+PROCEDURE RootPath(g : GadgetPtr);
+
+
+(* Selections *)
+
+PROCEDURE SelectAllFiles;
+
+PROCEDURE UnSelectAll;
+
+PROCEDURE RestoreSelect;
+
+PROCEDURE ReverseSelect;
+
+PROCEDURE SelectStats;
+
+
+(* DOS *)
+
+PROCEDURE Move;
+
+PROCEDURE Copy;
+
+PROCEDURE Delete;
+
+PROCEDURE Launch(pgm : ARRAY OF CHAR; reward : SelectCode);
+  (* Execute 'pgm' for each selected item.  If it executes without error,
+     the select status of the item is set to 'reward'. *)
+
+
+(* Misc *)
+
+PROCEDURE NewDir;
+
+PROCEDURE DeviceInfo(g : GadgetPtr);
+
+END ZCommands.

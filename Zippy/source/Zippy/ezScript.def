@@ -1,0 +1,19 @@
+DEFINITION MODULE ezScript;   (* MEW 881105 *)
+
+(* Written in Benchmark Modula-2 *)
+(* by Michael Weiblen   PLink: EKIM   CIS: 72506,2072 *)
+
+PROCEDURE OpenScript(name : ARRAY OF CHAR) : BOOLEAN;
+  (* Open a script file.  Returns TRUE if successful. *)
+
+PROCEDURE CloseScript;
+  (* Close the script file. *)
+
+PROCEDURE GetNextToken(VAR str : ARRAY OF CHAR);
+  (* Read the next token from the script file.  A token is defined here as
+     either a string of contiguous non-whitespace characters OR any string
+     of characters enclosed by quotes (the quotes will automatically be
+     omitted).  Whitespace is defined as any character <= CHR(32).
+     This is not a bullet-proof parser, so be careful. *)
+
+END ezScript.

@@ -1,0 +1,71 @@
+DEFINITION MODULE ZWindow;
+FROM SYSTEM IMPORT ADDRESS, ADR, INLINE, REG;
+FROM Intuition IMPORT MenuPtr, MenuItemPtr, GadgetPtr, IntuiTextPtr,
+ BorderPtr, ImagePtr, RememberPtr, NewWindow, PropInfoPtr, StringInfoPtr,
+ ScreenFlags, ScreenFlagsSet, GadgetActivation, GadgetActivationSet,
+ GadgetFlags, GadgetFlagsSet, IDCMPFlags, IDCMPFlagsSet, WindowFlags,
+ WindowFlagsSet, PropInfoFlags, PropInfoFlagsSet, MenuFlags, MenuFlagsSet,
+ MenuItemFlags, MenuItemFlagsSet, WBenchScreen, StrGadget, PropGadget,
+ BoolGadget, GadgetMutualExcludeSet, MenuItemMutualExcludeSet, NewWindowPtr;
+FROM PW2 IMPORT PW2RememberPtr, MakeNewWindowStructure,
+ MakeBorderStructure, MakeImageStructure, MakePropInfoStructure,
+ MakeStringInfoStructure, MakeGadgetStructure, MakeITextStructure,
+ PW2EnoughMemory, MakeMenuStructure, MakeMenuItemStructure;
+FROM Rasters IMPORT Jam1, Jam2;
+
+VAR
+	ZWindowRememberPtr : RememberPtr;
+	ImgDat1 : ADDRESS;
+	Image1 : ImagePtr;
+	RestoreGad : GadgetPtr;
+	ImgDat2 : ADDRESS;
+	Image2 : ImagePtr;
+	ReverseGad : GadgetPtr;
+	ImgDat3 : ADDRESS;
+	Image3 : ImagePtr;
+	AllGad : GadgetPtr;
+	ImgDat4 : ADDRESS;
+	Image4 : ImagePtr;
+	ClearGad : GadgetPtr;
+	ImgDat5 : ADDRESS;
+	Image5 : ImagePtr;
+	PushGad : GadgetPtr;
+	ImgDat6 : ADDRESS;
+	Image6 : ImagePtr;
+	SwapGad : GadgetPtr;
+	ImgDat7 : ADDRESS;
+	Image7 : ImagePtr;
+	ParentGad : GadgetPtr;
+	ImgDat8 : ADDRESS;
+	Image8 : ImagePtr;
+	RootGad : GadgetPtr;
+	ImgDat9 : ADDRESS;
+	Image9 : ImagePtr;
+	DeviceGad : GadgetPtr;
+	ImgDat10 : ADDRESS;
+	Image10 : ImagePtr;
+	RefreshGad : GadgetPtr;
+	SliderGadSInfo : PropInfoPtr;
+	Image11 : ImagePtr;
+	SliderGad : GadgetPtr;
+	DestGadSIBuff : ARRAY [0..255] OF CHAR;
+	DestGadSInfo : StringInfoPtr;
+	BorVec1 : ARRAY [0..3] OF INTEGER;
+	Border1 : BorderPtr;
+	IText1 : IntuiTextPtr;
+	DestGad : GadgetPtr;
+	SourceGadSIBuff : ARRAY [0..255] OF CHAR;
+	SourceGadSInfo : StringInfoPtr;
+	BorVec2 : ARRAY [0..3] OF INTEGER;
+	Border2 : BorderPtr;
+	IText2 : IntuiTextPtr;
+	SourceGad : GadgetPtr;
+	NewWindowStructure1 : NewWindowPtr;
+	
+
+PROCEDURE ZWindowImages();
+
+PROCEDURE ZWindow() : BOOLEAN;
+
+(* end of PowerWindows DEFINITION generation *)
+END ZWindow.

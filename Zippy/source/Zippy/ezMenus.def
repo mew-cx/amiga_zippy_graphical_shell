@@ -1,0 +1,54 @@
+DEFINITION MODULE ezMenus;  (* MEW 881105 *)
+
+(* Written in Benchmark Modula-2 *)
+(* by Michael Weiblen   PLink: EKIM   CIS: 72506,2072 *)
+
+FROM SYSTEM IMPORT
+    ADDRESS, BYTE;
+FROM Intuition IMPORT
+    MenuPtr, MenuFlagsSet, MenuItemPtr, MenuItemFlagsSet, WindowPtr,
+    MenuItemMutualExcludeSet, IntuiTextPtr;
+FROM Rasters IMPORT
+    DrawModeSet;
+
+
+VAR
+  TheWindow : WindowPtr;
+  FirstMenu, PrevMenu : MenuPtr;
+  PrevMenuItem, PrevSubItem : MenuItemPtr;
+  ezFrontPen, ezBackPen : BYTE;
+  ezDrawMode : DrawModeSet;
+  ezExcludeSet : MenuItemMutualExcludeSet;
+  ezMenuItemFlags : MenuItemFlagsSet;
+  ezMenuFlags : MenuFlagsSet;
+  Success : BOOLEAN;
+
+
+PROCEDURE InitMenuStrip(wp : WindowPtr);
+
+
+PROCEDURE AllocString(VAR sp : ADDRESS; str : ARRAY OF CHAR);
+
+PROCEDURE AllocIText(VAR it : IntuiTextPtr; str : ARRAY OF CHAR;
+    left, top : INTEGER);
+
+PROCEDURE AllocSubItem(str : ARRAY OF CHAR; left,width : INTEGER; key : CHAR;
+    size : CARDINAL);
+
+PROCEDURE AllocMenuItem(str : ARRAY OF CHAR; left,width : INTEGER; key : CHAR;
+    size : CARDINAL);
+
+PROCEDURE AllocMenu(str : ARRAY OF CHAR);
+
+
+PROCEDURE FreeString(VAR sp : ADDRESS);
+
+PROCEDURE FreeIText(VAR it : IntuiTextPtr);
+
+PROCEDURE FreeSubItem(VAR si : MenuItemPtr; size : CARDINAL);
+
+PROCEDURE FreeMenuItem(VAR mi : MenuItemPtr; size : CARDINAL);
+
+PROCEDURE FreeMenu(VAR m : MenuPtr);
+
+END ezMenus.

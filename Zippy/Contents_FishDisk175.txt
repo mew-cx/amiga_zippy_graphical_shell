@@ -1,0 +1,52 @@
+This is disk 175 of the freely distributable AMIGA software library.
+Below is a listing of the significant directories and their contents.
+
+
+Elements	Very nice interactive display of the the Periodic Table 
+		of Elements.  Can display a large amount of pertinent
+		data about a selected element along with a good deal of 
+		general and miscellaneous info.
+		Author:  Paul Thomas Miller
+
+Furnish		For those of you who may have ever used the "scale size cut
+		and place" method of determining your next living-room 
+		arrangement, this Amiga-ized version may be just what you 
+		need.  Binary only, shareware.
+		Author:  Terry Gintz 		
+
+Plot		Program to compute and plot 3 dimensional functions.
+		Major revision to PD version on disk number 49 by the 
+		same author.  Version 4.1, binary only, shareware.
+		Author:  Terry Gintz
+
+SafeBoot	Very handy intuition-based program to read and save 
+		custom bootblocks.  The bootblock can then be later 
+		restored should the disk become virus-infected.
+		Version 2.2, binary only.
+		Author:  Mark Lanoux
+
+SendMorse	Brush up on your morse code with this simple program 
+		that will read an input textfile and output the characters
+		at an adjustable rate.
+		Author:  Joe Larson
+  
+VirusX		Version 3.10 of the popular virus detection/vaccination
+		program.  Features a test for the new IRQ virus, among
+		others, and a new "Kill Virus" utility.  Includes source.
+		Author:  Steve Tibbett
+
+WBDepth		CLI program that allows you to change the number of bitplanes
+		for the WB screen on the fly.  Very useful for A500 and A2000
+		users with kickstart in ROM.  Binary only.
+		Author:  Andry Rachmat	
+	
+Zippy		A "Graphical Shell".  Opens a medium-size window and 
+		attaches a menu-strip for performing all sort of disk/data 
+		manipulations.  Features script files allowing you to attach
+		custom menu selections as you move between directories.
+		Also included is an intuition based utility for altering
+		FileInfo data.  (filename, filenote, RWED attributes, etc.)
+		Version 2.5, binary only.
+		Author:  Michael Weiblen
+ 
+

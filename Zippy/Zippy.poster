@@ -1,0 +1,29 @@
+               The Zippy Graphic Shell  (Version 2.5  11/05/88)
+
+                               Mike Weiblen
+                      4809 Calvert Road  POBox 1638
+                          College Park, MD 20740
+              PLink: EKIM   CIS: 72506,2082   GEnie: XTH36273
+
+The Zippy Graphic Shell represents a fresh new philosophy in the realm of
+Directory Utilities.  I've worked very hard to plug all user-interface holes
+and to provide as much flexibility as possible.
+See if this sounds good to you:
+  * Multiple PROGRAMMABLE menus
+  * Menu, gadget & command-key driven: there are at least two ways to do
+    everything; you pick YOUR favorite method
+  * Designed to work WITH the CLI, not replace it.
+  * Opens a small, adjustable window on your Workbench screen to conserve
+    screen "real estate" & chip ram
+  * Uses your default system font.
+  * Resizing the window allows more files to be displayed (up to 43 files
+    on an interlaced screen)
+  * LIVE scroll bar
+  * Drag-select a range of files (with scrolling)
+  * Disk drive names are read from the device list, NOT hardcoded.
+  * Honors the Hidden & Delete protection flags.
+  * Fast directory sorting
+  * Can handle up to 1000 files, though it only allocates memory for files
+    actually read from a directory.
+  * The mouse pointer changes to a spinning Boing ball when Zippy is busy.
+  * Benchmark Modula-2 source available

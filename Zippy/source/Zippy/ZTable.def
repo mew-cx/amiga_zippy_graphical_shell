@@ -1,0 +1,80 @@
+DEFINITION MODULE ZTable;  (* MEW 881103 *)
+
+FROM AmigaDOS IMPORT
+    FileLock, ProtectionSet;
+FROM ZGlobal IMPORT
+    ZERR;
+
+CONST
+  MaxFileNameSize = 32;
+
+TYPE
+  DirInfoPtr = POINTER TO DirInfoRec;
+  DirInfoRec = RECORD
+    diName : ARRAY [0..MaxFileNameSize] OF CHAR;
+    diIsDir, diSelected, diWasSelected : BOOLEAN;
+    diProt : ProtectionSet;
+    diSize : LONGCARD
+  END;
+  SelectCode = (On, Off, Toggle, Restore, Zap, Reread);
+
+VAR
+  NumFilesSelected, NumDirsSelected : INTEGER;
+  BytesSelected : LONGINT;
+
+
+(* ***** Access routines ***** *)
+
+PROCEDURE SaveSelections;
+  (* Stores the current selection info for possible recovery *)
+
+PROCEDURE NextEntry(dip : DirInfoPtr) : DirInfoPtr;
+  (* This is how you access the directory table.  On your first call, set
+     dip:=NIL.  This function will return a pointer to the next
+     sequential directory table entry until it hits the end, at which
+     time it returns NIL. *)
+
+PROCEDURE XY2DIP(x,y : INTEGER) : DirInfoPtr;
+  (* Convert the x,y position of the mouse into a DirInfoPtr.  If the
+     mouse is not pointer to a file entry in the table, return NIL. *)
+
+
+(* ***** Maintenence routines ***** *)
+
+PROCEDURE Select(dip : DirInfoPtr; code : SelectCode);
+  (* This de/selects an item and adjusts NumFilesSelected, NumDirsSelected
+     and BytesSelected accordingly.  *)
+
+PROCEDURE ResizeTable;
+  (* Initialize internal variables to fit the directory table to current
+     window size. *)
+
+PROCEDURE EmptyTable;
+  (* Clear all information out of the directory table. *)
+
+PROCEDURE LoadTableFromDirectory(lock : FileLock; VAR files,dirs : CARDINAL) : ZERR;
+  (* Read the directory lock into the directory table.  Returns counts of the
+     number of files & directories loaded. *)
+
+PROCEDURE LoadTableWithDevices() : ZERR;
+  (* Load the directory table with physical devices & ASSIGNed locks. *)
+
+PROCEDURE FreeTable;
+  (* Frees all of the table's allocated memory (for shutdown) *)
+
+
+(* ***** Display routines ***** *)
+
+PROCEDURE DisplayTable(forced : BOOLEAN);
+  (* If forced = FALSE, redisplay the table only if it has moved.
+     If forced = TRUE, must redisplay the table. *)
+
+PROCEDURE SetupDragSelect(x,y : INTEGER);
+  (* Given the current mouse position, initialize internal variables for
+     a drag selection.  x,y MUST be inside the table area. *)
+
+PROCEDURE DoDragSelect(x,y : INTEGER);
+  (* Given the current mouse position, perform a drag selection.  Redisplay
+     the directory table as needed. *)
+
+END ZTable.

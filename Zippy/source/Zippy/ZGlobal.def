@@ -1,0 +1,39 @@
+DEFINITION MODULE ZGlobal  (* 881102 *);
+
+FROM AmigaDOS IMPORT
+    FileLock;
+
+TYPE
+  ZERR = LONGINT;
+  Str80  = ARRAY [0..80] OF CHAR;
+  Str255 = ARRAY [0..255] OF CHAR;
+
+CONST  (* Specific ZERR values: >0 are AmigaDOS's, <0 are Zippy's *)
+  ZOK        =  0D;
+  ZNoMem     = -1D;
+  ZBadSource = -2D;
+  ZBadDest   = -3D;
+  ZBadName   = -4D;
+  ZExists    = -5D;
+  ZAbort     = -6D;
+  ZTooMany   = -7D;
+  ZFileOnly  = -8D;
+  ZDelProt   = -9D;
+
+  (* These new 1.3 protection flags are not defined in Intuition.def *)
+  FibHidden = 7;
+  FibScript = 6;
+  FibPure   = 5;
+
+
+VAR
+  SourceLock, OrigLock : FileLock;
+
+
+PROCEDURE NumToStr(VAR s : ARRAY OF CHAR; n : LONGCARD);
+
+PROCEDURE Ratio(range,a,b : CARDINAL) : CARDINAL;
+
+PROCEDURE ZErrDescription(err : ZERR; VAR str : ARRAY OF CHAR);
+
+END ZGlobal.

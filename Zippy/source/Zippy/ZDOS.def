@@ -1,0 +1,39 @@
+DEFINITION MODULE ZDOS  (* 881029 *);
+
+FROM ZGlobal IMPORT
+    ZERR;
+FROM AmigaDOS IMPORT
+    FileLock, FileInfoBlockPtr;
+
+
+TYPE
+  NameStatus = (badname, notfound, file, directory);
+
+  
+(* Utility Routines *)
+
+PROCEDURE TackOn(VAR path : ARRAY OF CHAR; file : ARRAY OF CHAR);
+  (* Appends file to path, using a "/" when appropriate. *)
+
+PROCEDURE PathName(lock : FileLock; VAR pathname : ARRAY OF CHAR);
+  (* Given a lock, returns the full DOS pathname. *)
+
+PROCEDURE CheckName(name : ARRAY OF CHAR; myfib : FileInfoBlockPtr) : NameStatus;
+  (* General routine to verify a DOS name.  Returned values are:
+       badname   = not a valid DOS name
+       notfound  = name is valid, but no such entry was found
+       file      = name is an existing file
+       directory = name is an existing directory
+     If myfib # NIL, this routine will fill myfib^ with the FileInfoBlock.
+     (By the way, myfib does NOT have to be longword aligned!!) *)
+
+
+(* Customized DOS commands *)
+
+PROCEDURE Copy(from,to : ARRAY OF CHAR) : ZERR;
+
+PROCEDURE NewDir(name : ARRAY OF CHAR) : ZERR;
+
+PROCEDURE DiskAvail(name : ARRAY OF CHAR; VAR avail : LONGINT) : ZERR;
+
+END ZDOS.

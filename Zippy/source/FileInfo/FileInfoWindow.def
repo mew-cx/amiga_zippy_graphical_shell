@@ -1,0 +1,55 @@
+DEFINITION MODULE FileInfoWindow;  (* MEW 881027 *)
+
+(* Originally produced by PowerWindows2.5; hand edited to cut the fluff *)
+
+FROM SYSTEM IMPORT ADR;
+FROM Intuition IMPORT IntuiTextPtr, BorderPtr, StringInfoPtr,
+ GadgetActivation, GadgetActivationSet, GadgetFlags, GadgetFlagsSet,
+ IDCMPFlags, IDCMPFlagsSet, WindowFlags, WindowFlagsSet,
+ WBenchScreen, StrGadget, BoolGadget, GadgetMutualExcludeSet,
+ GadgetPtr, RememberPtr, NewWindowPtr;
+FROM Preferences IMPORT TopazEighty;
+FROM PW2 IMPORT PW2RememberPtr,
+ MakeNewWindowStructure, MakeBorderStructure, MakeStringInfoStructure,
+ MakeGadgetStructure, MakeITextStructure, MakeTextAttrStructure,
+ PW2EnoughMemory;
+FROM Rasters IMPORT Jam1, Jam2;
+FROM Text IMPORT TextAttrPtr, FontStyleSet, FontFlagsSet;
+
+VAR
+	ProtGad : ARRAY [0..7] OF GadgetPtr;
+	FileInfoWindowRememberPtr : RememberPtr;
+	BorVec1 : ARRAY [0..9] OF INTEGER;
+	Border1 : BorderPtr;
+	TOPAZ80 : TextAttrPtr;
+	IText1 : IntuiTextPtr;
+	QuitGad : GadgetPtr;
+	IText2 : IntuiTextPtr;
+	SaveGad : GadgetPtr;
+	BorVec3 : ARRAY [0..9] OF INTEGER;
+	Border3 : BorderPtr;
+	IText3 : IntuiTextPtr;
+	IText4 : IntuiTextPtr;
+	IText5 : IntuiTextPtr;
+	IText6 : IntuiTextPtr;
+	IText7 : IntuiTextPtr;
+	IText8 : IntuiTextPtr;
+	IText9 : IntuiTextPtr;
+	IText10 : IntuiTextPtr;
+	NoteGadSIBuff : ARRAY [0..80] OF CHAR;
+	NoteGadSInfo : StringInfoPtr;
+	BorVec11 : ARRAY [0..9] OF INTEGER;
+	Border11 : BorderPtr;
+	IText11 : IntuiTextPtr;
+	NoteGad : GadgetPtr;
+	NameGadSIBuff : ARRAY [0..31] OF CHAR;
+	NameGadSInfo : StringInfoPtr;
+	IText12 : IntuiTextPtr;
+	NameGad : GadgetPtr;
+	NewWindowStructure1 : NewWindowPtr;
+	
+
+PROCEDURE FileInfoWindow() : BOOLEAN;
+
+(* end of PowerWindows DEFINITION generation *)
+END FileInfoWindow.

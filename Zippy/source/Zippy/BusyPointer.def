@@ -1,0 +1,32 @@
+DEFINITION MODULE BusyPointer;  (* MEW 881102 *)
+
+(* Written in Benchmark Modula-2 *)
+(* by Michael Weiblen   PLink: EKIM   CIS: 72506,2072 *)
+
+(* This module creates and handles an animated mouse pointer.  It can be *)
+(* used to show that a program is busy doing other things.  When the     *)
+(* program completes its task, the pointer is restored to the user's     *)
+(* usual mouse pointer.  The image data is set up to display a  rotating *)
+(* Amiga Boing ball. *)   
+
+
+FROM Intuition IMPORT  WindowPtr;
+
+
+PROCEDURE AllocBusyPointers(wp : WindowPtr) : BOOLEAN;
+  (* Allocate & initialize the BusyPointer images.  Return TRUE on success *)
+
+PROCEDURE FreeBusyPointers;
+  (* Deallocate the BusyPointer images.  Can safely be called even if 
+     AllocBusyPointers failed. *)
+
+PROCEDURE SpinBusyPointer(wp : WindowPtr; right : BOOLEAN);
+  (* Each call to this procedure will rotate the Boing ball in the 
+     direction specified.  To restore the original window pointer,
+     use RestorePointer. *)
+
+PROCEDURE RestorePointer(wp : WindowPtr);
+  (* Similar to Intuition's ClearPointer, but this also restores the original
+     pointer color table. *)
+
+END BusyPointer.

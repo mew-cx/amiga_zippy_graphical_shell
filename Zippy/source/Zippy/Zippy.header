@@ -1,0 +1,13 @@
+FROM SYSTEM IMPORT ADDRESS, ADR, INLINE, REG;
+FROM Intuition IMPORT MenuPtr, MenuItemPtr, GadgetPtr, IntuiTextPtr,
+ BorderPtr, ImagePtr, RememberPtr, NewWindow, PropInfoPtr, StringInfoPtr,
+ ScreenFlags, ScreenFlagsSet, GadgetActivation, GadgetActivationSet,
+ GadgetFlags, GadgetFlagsSet, IDCMPFlags, IDCMPFlagsSet, WindowFlags,
+ WindowFlagsSet, PropInfoFlags, PropInfoFlagsSet, MenuFlags, MenuFlagsSet,
+ MenuItemFlags, MenuItemFlagsSet, WBenchScreen, StrGadget, PropGadget,
+ BoolGadget, GadgetMutualExcludeSet, MenuItemMutualExcludeSet, NewWindowPtr;
+FROM PW2 IMPORT PW2RememberPtr, MakeNewWindowStructure,
+ MakeBorderStructure, MakeImageStructure, MakePropInfoStructure,
+ MakeStringInfoStructure, MakeGadgetStructure, MakeITextStructure,
+ PW2EnoughMemory, MakeMenuStructure, MakeMenuItemStructure;
+FROM Rasters IMPORT Jam1, Jam2;

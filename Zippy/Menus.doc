@@ -1,0 +1,30 @@
+There are three sample menu definition scripts in this archive, called
+menu.1, menu.2 and menu.3.
+
+Please read Zippy.doc FIRST for the full story on whats going in here.
+
+
+For Zippy to acknowledge these files, they MUST be renamed to "menus.zip"
+and placed in the proper directory.  Please note that these files refer
+to things specific to MY system.  Dont expect to rename them & start using
+them!  They are examples only.
+
+Menu.1 is my global menu script.  It is setup for 2 menus. The global script
+MUST be placed in the "s:" directory.  Notice that the menuitem 'Execute'
+has a "" for the menu shortcut.  This means it does not have one.  Also,
+notice that you may spell out the reward or just use the first letter
+(u=unselect, z=zap, r=reread).
+
+Menu.2 is my Modula-2 development local menu script.  It goes in my
+development directory, which I have assigned to "m2:"
+
+Menu.3 is a sample of a local script for an animation directory.  I have it
+in my "anim:" directory, where I keep my .anim files.  Notice that the
+program string includes a command line argument.
+
+
+Notice how I include spaces in the titles to make things look nice.  Also,
+if you specify a menu shortcut key, you must tack on 5 spaces to the title
+so they can be displayed properly.
+IMPORTANT: If you dont leave enough room for the command key to be displayed,
+you'll be inviting the guru!  You've been warned!
